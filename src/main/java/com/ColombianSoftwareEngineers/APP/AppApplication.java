@@ -14,7 +14,7 @@ public class AppApplication {
 		System.out.println("Hola Mundo");
 		//Instancia de la clase empleado
 		Empleado empleado = new Empleado();
-		empleado.setNombreEmpleado("Hasan");
+		empleado.setNombreEmpleado("Camilo");
 		empleado.setIdEmpleado(45);
 		empleado.setCorreoEmpleado("sadad00");
 		empleado.setRolEmpleado("Operador");
