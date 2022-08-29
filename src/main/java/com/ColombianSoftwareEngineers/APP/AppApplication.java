@@ -13,6 +13,7 @@ public class AppApplication {
 		//SpringApplication.run(AppApplication.class, args);
 		System.out.println("Hola Github!");
 		System.out.println("Este es el commit de Juan Cepeda");
+		System.out.println("Este es el commit de Jorge Rubio");
 		//Instancia de la clase empleado
 		Empleado empleado = new Empleado();
 		empleado.setNombreEmpleado("Camilo");
