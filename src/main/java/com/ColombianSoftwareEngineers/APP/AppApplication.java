@@ -15,6 +15,7 @@ public class AppApplication {
 		System.out.println("Este es el commit de Juan Cepeda");
 		System.out.println("Este es el commit de Jorge Rubio");
 		System.out.println("Este es el commit de Camilo Ceron");
+		System.out.println("Este es el commit de Hasan Gutierrez");
 		//Instancia de la clase empleado
 		Empleado empleado = new Empleado();
 		empleado.setNombreEmpleado("Camilo");
