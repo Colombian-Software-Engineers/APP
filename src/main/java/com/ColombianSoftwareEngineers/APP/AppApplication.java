@@ -11,7 +11,7 @@ public class AppApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(AppApplication.class, args);
-		System.out.println("Hola Mundo");
+		System.out.println("Hola Github!");
 		//Instancia de la clase empleado
 		Empleado empleado = new Empleado();
 		empleado.setNombreEmpleado("Camilo");
