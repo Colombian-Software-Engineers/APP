@@ -1,23 +1,27 @@
-package Entidades;
+package com.ColombianSoftwareEngineers.APP.entities;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity   //referencia que es una Entidad
-
+@Table(name="empleado")
 public class Empleado {
     @Id  //Genera el ID de la tabla
     @GeneratedValue(strategy = GenerationType.AUTO)  //genera el valor incremental del ID
-    private Integer idEmpleado;
+    private Long idEmpleado;
+    @Column(name="nombre")
     private String nombreEmpleado;
+    @Column(name="correo")
     private String correoEmpleado;
+    @Column(name="empresa")
     private String empresaEmpleado;
+    @Column(name="rol")
     private String rolEmpleado;
 
     @OneToMany(mappedBy = "empleado")   //Relacion de uno a muchos
     private List <MovimientoDinero> movimientoDineroList;  //atributo para la relacion de uno a muchos un empleado puede tener muchos movimientos por eso un listado
     @ManyToOne
-    @JoinColumn(name="id_empresa")
+    @JoinColumn(name="idEmpresa")
     private Empresa empresa;
 
 
@@ -27,11 +31,11 @@ public class Empleado {
 
     //metodos set y get
 
-    public Integer getIdEmpleado() {
+    public Long getIdEmpleado() {
         return idEmpleado;
     }
 
-    public void setIdEmpleado(Integer idEmpleado) {
+    public void setIdEmpleado(Long idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
 

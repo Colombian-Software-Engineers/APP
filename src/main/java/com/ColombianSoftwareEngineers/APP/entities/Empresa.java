@@ -1,19 +1,23 @@
-package Entidades;
+package com.ColombianSoftwareEngineers.APP.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="empresa")
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idEmpresa;   //los id estaban en long pero los deje en int porque me generaban un error a la hora de ingresar el dato
+    private Long idEmpresa;
+    @Column(name="nombre")
     private String nombreEmpresa;
+    @Column(name="direccion")
     private String direccionEmpresa;
+    @Column(name="telefono")
     private String telefonoEmpresa;
+    @Column(name="nit")
     private String nitEmpresa;
+
     @OneToMany(mappedBy = "empresa")
     private List<Empleado> empleadoList;
 
@@ -24,11 +28,11 @@ public class Empresa {
 
     //metodos set y get
 
-    public Integer getIdEmpresa() {
+    public Long getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(Integer idEmpresa) {
+    public void setIdEmpresa(Long idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 

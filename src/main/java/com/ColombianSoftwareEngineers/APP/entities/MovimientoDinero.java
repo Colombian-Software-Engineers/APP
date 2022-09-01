@@ -1,17 +1,22 @@
-package Entidades;
+package com.ColombianSoftwareEngineers.APP.entities;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name="movimiento")
 public class MovimientoDinero {
     @Id  //Genera el ID de la tabla
     @GeneratedValue(strategy = GenerationType.AUTO)  //genera el valor incremental del ID
-
-    private Integer idUsuario;
+    private Long idMovimiento;
+    @Column(name="monto")
     private Integer montoMovimiento;
+    @Column(name="concepto")
     private String  conceptoMovimiento;
+    @Column(name="usuario")
     private String usuarioMovimiento;
+
     @ManyToOne
-    @JoinColumn(name="empleado_id")  //nombre de la columna
+    @JoinColumn(name="idEmpleado")  //nombre de la columna
     private Empleado empleado;       //id
 
     //constructor
@@ -21,12 +26,12 @@ public class MovimientoDinero {
 
     //metodos get set
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Long getIdMovimiento() {
+        return idMovimiento;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdMovimiento(Long idMovimiento) {
+        this.idMovimiento = idMovimiento;
     }
 
     public Integer getMontoMovimiento() {
@@ -66,7 +71,7 @@ public class MovimientoDinero {
     @Override
     public String toString() {
         return "MovimientoDinero{" +
-                "idUsuario=" + idUsuario +
+                "idUsuario=" + idMovimiento +
                 ", montoMovimiento=" + montoMovimiento +
                 ", conceptoMovimiento='" + conceptoMovimiento + '\'' +
                 ", usuarioMovimiento='" + usuarioMovimiento + '\'' +
