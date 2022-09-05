@@ -20,10 +20,10 @@ public class Empleado {
 
     @OneToMany(mappedBy = "empleado")   //Relacion de uno a muchos
     private List <MovimientoDinero> movimientoDineroList;  //atributo para la relacion de uno a muchos un empleado puede tener muchos movimientos por eso un listado
+
     @ManyToOne
     @JoinColumn(name="idEmpresa")
     private Empresa empresa;
-
 
     public Empleado(){
         //constructor vacio

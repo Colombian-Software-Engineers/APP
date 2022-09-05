@@ -19,6 +19,10 @@ public class MovimientoDinero {
     @JoinColumn(name="idEmpleado")  //nombre de la columna
     private Empleado empleado;       //id
 
+    @ManyToOne
+    @JoinColumn(name="idEmpresa")
+    private Empresa empresa;
+
     //constructor
     public MovimientoDinero(){
 

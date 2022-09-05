@@ -21,6 +21,9 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa")
     private List<Empleado> empleadoList;
 
+    @OneToMany(mappedBy = "empresa")
+    private List<MovimientoDinero> movimientoDineroList;
+
     //constructor
     public Empresa(){
 
