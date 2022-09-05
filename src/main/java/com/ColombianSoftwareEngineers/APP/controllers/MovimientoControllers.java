@@ -11,12 +11,15 @@ import java.util.List;
 @RestController
 public class MovimientoControllers {
     MovimientoServices service;
-    public MovimientoControllers(MovimientoServices services) {
+    EmpresaServices  empresaServices;
+    public MovimientoControllers(MovimientoServices services, EmpresaServices empresaServices) {
         this.service = services;
+        this.empresaServices=empresaServices;
+
     }
 
-    @GetMapping("/movimiento")
-    public List<MovimientoDinero> MovimientoList(){ return this.service.getMovimientoList(); }
+    @GetMapping("/empresas/{id}/movimientos")
+    public List<MovimientoDinero> MovimientoList(@PathVariable Long id){ return this.service.getMovimientoList(); }
     @PostMapping("/movimiento")
     public MovimientoDinero PostMovimiento(@RequestBody MovimientoDinero movimiento){ return this.service.createOrUpdateMovimiento(movimiento);}
 
