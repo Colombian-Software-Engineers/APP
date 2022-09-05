@@ -36,4 +36,5 @@ public class EmpleadoController {
         return "Empleado eliminado";
     }
 
+    // TODO sync empleado table with empresa and movimientos table
 }

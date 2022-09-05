@@ -15,27 +15,34 @@ public class MovimientoControllers {
     public MovimientoControllers(MovimientoServices services, EmpresaServices empresaServices) {
         this.service = services;
         this.empresaServices=empresaServices;
-
     }
 
-    @GetMapping("/empresas/{id}/movimientos")
-    public List<MovimientoDinero> MovimientoList(@PathVariable Long id){ return this.service.getMovimientoList(); }
-    @PostMapping("/movimiento")
-    public MovimientoDinero PostMovimiento(@RequestBody MovimientoDinero movimiento){ return this.service.createOrUpdateMovimiento(movimiento);}
-
-    @GetMapping("/movimiento/{id}")
-    public MovimientoDinero MovimientoById(@PathVariable Long id){ return this.service.getMovimientoById(id); }
-    @PatchMapping("/movimiento/{id}")
-    public MovimientoDinero PatchMovimientoById(@PathVariable Long id, @RequestBody MovimientoDinero movimiento){
-        MovimientoDinero resultado = this.service.getMovimientoById(id);
-        resultado.setMontoMovimiento(movimiento.getMontoMovimiento());
-        resultado.setConceptoMovimiento(movimiento.getConceptoMovimiento());
-        resultado.setUsuarioMovimiento(movimiento.getUsuarioMovimiento());
-        return this.service.createOrUpdateMovimiento(resultado);
+    @GetMapping("/empresas/{idEmp}/movimientos")
+    public List<MovimientoDinero> MovimientoList(@PathVariable Long idEmp){
+        return this.empresaServices.getEmpresaById(idEmp).getMovimientoDineroList();
     }
-    @DeleteMapping("/movimiento/{id}")
-    public String DeleteMovimientoById(@PathVariable Long id){
-        this.service.deleteMovimientoById(id);
-        return "Movimiento eliminado";
+
+    @PostMapping("/empresas/{idEmp}/movimientos")
+    public MovimientoDinero PostMovimiento(@PathVariable Long idEmp, @RequestBody MovimientoDinero movimiento){
+        movimiento.setEmpresa(this.empresaServices.getEmpresaById(idEmp));
+        return this.service.createOrUpdateMovimiento(movimiento);
+    }
+
+    @PatchMapping("/empresas/{idEmp}/movimiento/{id}")
+    public MovimientoDinero PatchMovimientoById(@PathVariable Long idEmp, @PathVariable Long id, @RequestBody MovimientoDinero movimiento){
+        movimiento.setIdMovimiento(id);
+        movimiento.setEmpresa(this.empresaServices.getEmpresaById(idEmp));
+        return this.service.createOrUpdateMovimiento(movimiento);
+    }
+    @DeleteMapping("/empresas/{idEmp}/movimientos/{id}")
+    public String DeleteMovimientoById(@PathVariable Long idEmp, @PathVariable Long id){
+        List<MovimientoDinero> listaMovimientos = this.empresaServices.getEmpresaById(idEmp).getMovimientoDineroList();
+        if(listaMovimientos.contains(this.service.getMovimientoById(id))){
+            this.service.deleteMovimientoById(id);
+            return "Movimiento eliminado";
+        }
+        else{
+            return "Movimiento no encontrado";
+        }
     }
 }

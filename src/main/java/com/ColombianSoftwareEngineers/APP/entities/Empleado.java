@@ -1,5 +1,9 @@
 package com.ColombianSoftwareEngineers.APP.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +11,7 @@ import java.util.List;
 @Table(name="empleado")
 public class Empleado {
     @Id  //Genera el ID de la tabla
-    @GeneratedValue(strategy = GenerationType.AUTO)  //genera el valor incremental del ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //genera el valor incremental del ID
     private Long idEmpleado;
     @Column(name="nombre")
     private String nombreEmpleado;
@@ -17,10 +21,12 @@ public class Empleado {
     private String empresaEmpleado;
     @Column(name="rol")
     private String rolEmpleado;
+    // TODO define relation of empleado with user 
 
     @OneToMany(mappedBy = "empleado")   //Relacion de uno a muchos
     private List <MovimientoDinero> movimientoDineroList;  //atributo para la relacion de uno a muchos un empleado puede tener muchos movimientos por eso un listado
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idEmpresa")
     private Empresa empresa;

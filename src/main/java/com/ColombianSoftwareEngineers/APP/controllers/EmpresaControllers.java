@@ -22,12 +22,8 @@ public class EmpresaControllers {
     public Empresa EmpresaById(@PathVariable Long id){ return this.service.getEmpresaById(id); }
     @PatchMapping("/empresas/{id}")
     public Empresa PatchEmpresaById(@PathVariable Long id, @RequestBody Empresa empresa){
-        Empresa resultado = this.service.getEmpresaById(id);
-        resultado.setTelefonoEmpresa(empresa.getTelefonoEmpresa());
-        resultado.setNitEmpresa(empresa.getNitEmpresa());
-        resultado.setDireccionEmpresa(empresa.getDireccionEmpresa());
-        resultado.setNombreEmpresa(empresa.getNombreEmpresa());
-        return this.service.createOrUpdateEmpresa(resultado);
+        empresa.setIdEmpresa(id);
+        return this.service.createOrUpdateEmpresa(empresa);
     }
     @DeleteMapping("/empresas/{id}")
     public String DeleteEmpresaById(@PathVariable Long id){

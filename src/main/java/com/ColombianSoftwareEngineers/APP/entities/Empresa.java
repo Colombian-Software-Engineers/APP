@@ -1,5 +1,7 @@
 package com.ColombianSoftwareEngineers.APP.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +9,7 @@ import java.util.List;
 @Table(name="empresa")
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpresa;
     @Column(name="nombre")
     private String nombreEmpresa;
@@ -23,6 +25,7 @@ public class Empresa {
 
     @OneToMany(mappedBy = "empresa")
     private List<MovimientoDinero> movimientoDineroList;
+
 
     //constructor
     public Empresa(){
@@ -69,6 +72,22 @@ public class Empresa {
 
     public void setNitEmpresa(String nitEmpresa) {
         this.nitEmpresa = nitEmpresa;
+    }
+
+    public List<Empleado> getEmpleadoList() {
+        return empleadoList;
+    }
+
+    public List<MovimientoDinero> getMovimientoDineroList() {
+        return movimientoDineroList;
+    }
+
+    public void setEmpleadoList(List<Empleado> empleadoList) {
+        this.empleadoList = empleadoList;
+    }
+
+    public void setMovimientoDineroList(List<MovimientoDinero> movimientoDineroList) {
+        this.movimientoDineroList = movimientoDineroList;
     }
 
     //metod toString

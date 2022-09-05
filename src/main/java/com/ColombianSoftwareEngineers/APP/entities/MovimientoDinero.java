@@ -1,12 +1,14 @@
 package com.ColombianSoftwareEngineers.APP.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="movimiento")
 public class MovimientoDinero {
     @Id  //Genera el ID de la tabla
-    @GeneratedValue(strategy = GenerationType.AUTO)  //genera el valor incremental del ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //genera el valor incremental del ID
     private Long idMovimiento;
     @Column(name="monto")
     private Integer montoMovimiento;
@@ -15,10 +17,12 @@ public class MovimientoDinero {
     @Column(name="usuario")
     private String usuarioMovimiento;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idEmpleado")  //nombre de la columna
     private Empleado empleado;       //id
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idEmpresa")
     private Empresa empresa;
@@ -29,6 +33,14 @@ public class MovimientoDinero {
     }
 
     //metodos get set
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
     public Long getIdMovimiento() {
         return idMovimiento;
