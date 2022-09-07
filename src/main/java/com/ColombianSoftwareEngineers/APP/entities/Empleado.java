@@ -21,7 +21,6 @@ public class Empleado {
     private String empresaEmpleado;
     @Column(name="rol")
     private String rolEmpleado;
-    // TODO define relation of empleado with user 
 
     @OneToMany(mappedBy = "empleado")   //Relacion de uno a muchos
     private List <MovimientoDinero> movimientoDineroList;  //atributo para la relacion de uno a muchos un empleado puede tener muchos movimientos por eso un listado
