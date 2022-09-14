@@ -1,21 +1,31 @@
-package Entidades;
+package com.ColombianSoftwareEngineers.APP.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="empresa")
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idEmpresa;   //los id estaban en long pero los deje en int porque me generaban un error a la hora de ingresar el dato
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEmpresa;
+    @Column(name="nombre")
     private String nombreEmpresa;
+    @Column(name="direccion")
     private String direccionEmpresa;
+    @Column(name="telefono")
     private String telefonoEmpresa;
+    @Column(name="nit")
     private String nitEmpresa;
+
     @OneToMany(mappedBy = "empresa")
     private List<Empleado> empleadoList;
+
+    @OneToMany(mappedBy = "empresa")
+    private List<MovimientoDinero> movimientoDineroList;
+
 
     //constructor
     public Empresa(){
@@ -24,11 +34,11 @@ public class Empresa {
 
     //metodos set y get
 
-    public Integer getIdEmpresa() {
+    public Long getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(Integer idEmpresa) {
+    public void setIdEmpresa(Long idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 
@@ -62,6 +72,22 @@ public class Empresa {
 
     public void setNitEmpresa(String nitEmpresa) {
         this.nitEmpresa = nitEmpresa;
+    }
+
+    public List<Empleado> getEmpleadoList() {
+        return empleadoList;
+    }
+
+    public List<MovimientoDinero> getMovimientoDineroList() {
+        return movimientoDineroList;
+    }
+
+    public void setEmpleadoList(List<Empleado> empleadoList) {
+        this.empleadoList = empleadoList;
+    }
+
+    public void setMovimientoDineroList(List<MovimientoDinero> movimientoDineroList) {
+        this.movimientoDineroList = movimientoDineroList;
     }
 
     //metod toString

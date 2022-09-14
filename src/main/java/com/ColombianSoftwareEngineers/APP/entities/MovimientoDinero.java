@@ -1,18 +1,31 @@
-package Entidades;
+package com.ColombianSoftwareEngineers.APP.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name="movimiento")
 public class MovimientoDinero {
     @Id  //Genera el ID de la tabla
-    @GeneratedValue(strategy = GenerationType.AUTO)  //genera el valor incremental del ID
-
-    private Integer idUsuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //genera el valor incremental del ID
+    private Long idMovimiento;
+    @Column(name="monto")
     private Integer montoMovimiento;
+    @Column(name="concepto")
     private String  conceptoMovimiento;
+    @Column(name="usuario")
     private String usuarioMovimiento;
+
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="empleado_id")  //nombre de la columna
+    @JoinColumn(name="idEmpleado")  //nombre de la columna
     private Empleado empleado;       //id
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="idEmpresa")
+    private Empresa empresa;
 
     //constructor
     public MovimientoDinero(){
@@ -21,12 +34,20 @@ public class MovimientoDinero {
 
     //metodos get set
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Long getIdMovimiento() {
+        return idMovimiento;
+    }
+
+    public void setIdMovimiento(Long idMovimiento) {
+        this.idMovimiento = idMovimiento;
     }
 
     public Integer getMontoMovimiento() {
@@ -66,7 +87,7 @@ public class MovimientoDinero {
     @Override
     public String toString() {
         return "MovimientoDinero{" +
-                "idUsuario=" + idUsuario +
+                "idUsuario=" + idMovimiento +
                 ", montoMovimiento=" + montoMovimiento +
                 ", conceptoMovimiento='" + conceptoMovimiento + '\'' +
                 ", usuarioMovimiento='" + usuarioMovimiento + '\'' +
