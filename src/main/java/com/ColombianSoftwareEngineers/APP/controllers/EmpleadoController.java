@@ -26,7 +26,6 @@ public class EmpleadoController {
         Empleado resultado = this.service.getEmpleadoById(id);
         resultado.setNombreEmpleado(empleado.getNombreEmpleado());
         resultado.setCorreoEmpleado(empleado.getCorreoEmpleado());
-        resultado.setEmpresaEmpleado(empleado.getEmpresaEmpleado());
         resultado.setRolEmpleado(empleado.getRolEmpleado());
         return this.service.createOrUpdateEmpleado(resultado);
     }

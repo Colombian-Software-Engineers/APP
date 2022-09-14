@@ -3,6 +3,7 @@ package com.ColombianSoftwareEngineers.APP.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="movimiento")
@@ -17,12 +18,10 @@ public class MovimientoDinero {
     @Column(name="usuario")
     private String usuarioMovimiento;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idEmpleado")  //nombre de la columna
     private Empleado empleado;       //id
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="idEmpresa")
     private Empresa empresa;
@@ -40,6 +39,11 @@ public class MovimientoDinero {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+        List<MovimientoDinero> movimientoDineroList = empresa.getMovimientoDineroList();
+        if(!movimientoDineroList.contains(this)){
+            movimientoDineroList.add(this);
+            empresa.setMovimientoDineroList(movimientoDineroList);
+        }
     }
 
     public Long getIdMovimiento() {
@@ -72,6 +76,12 @@ public class MovimientoDinero {
 
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
+        this.usuarioMovimiento = empleado.getNombreEmpleado();
+        List<MovimientoDinero> movimientoDineroList = empleado.getMovimientoDineroList();
+        if(!movimientoDineroList.contains(this)){
+            movimientoDineroList.add(this);
+            empleado.setMovimientoDineroList(movimientoDineroList);
+        }
     }
 
     public String getUsuarioMovimiento() {

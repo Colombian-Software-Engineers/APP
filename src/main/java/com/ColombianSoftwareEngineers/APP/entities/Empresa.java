@@ -1,8 +1,8 @@
 package com.ColombianSoftwareEngineers.APP.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +29,8 @@ public class Empresa {
 
     //constructor
     public Empresa(){
-
+        this.empleadoList = new ArrayList<Empleado>();
+        this.movimientoDineroList = new ArrayList<MovimientoDinero>();
     }
 
     //metodos set y get
@@ -90,16 +91,5 @@ public class Empresa {
         this.movimientoDineroList = movimientoDineroList;
     }
 
-    //metod toString
 
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "idEmpresa=" + idEmpresa +
-                ", nombreEmpresa='" + nombreEmpresa + '\'' +
-                ", direccionEmpresa='" + direccionEmpresa + '\'' +
-                ", telefonoEmpresa='" + telefonoEmpresa + '\'' +
-                ", nitEmpresa='" + nitEmpresa + '\'' +
-                '}';
-    }
 }
