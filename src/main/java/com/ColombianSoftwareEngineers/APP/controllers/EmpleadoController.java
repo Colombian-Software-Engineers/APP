@@ -3,6 +3,7 @@ package com.ColombianSoftwareEngineers.APP.controllers;
 import com.ColombianSoftwareEngineers.APP.entities.Empleado;
 import com.ColombianSoftwareEngineers.APP.services.EmpleadoServices;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -16,8 +17,11 @@ public class EmpleadoController {
 
     @GetMapping("/empleado")
     public List<Empleado> EmpleadoList(){ return this.service.getEmpleadoList(); }
-    @PostMapping("/empleado")
-    public Empleado PostEmpleado(@RequestBody Empleado empleado){ return this.service.createOrUpdateEmpleado(empleado);}
+    @PostMapping("/empleados")
+    public RedirectView PostEmpleado(@ModelAttribute Empleado empleado){
+        this.service.createOrUpdateEmpleado(empleado);
+        return new RedirectView("/empresas/"+empleado.getEmpresa().getIdEmpresa()+"/empleados");
+    }
 
     @GetMapping("/empleado/{id}")
     public Empleado EmpleadoById(@PathVariable Long id){ return this.service.getEmpleadoById(id); }

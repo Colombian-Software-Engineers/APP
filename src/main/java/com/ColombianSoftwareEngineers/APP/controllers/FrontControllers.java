@@ -35,7 +35,7 @@ public class FrontControllers {
     }
 
     @RequestMapping("/empresas/{id}/movimientos")
-    public String empresas(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
+    public String empresasmovimientos(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
         List<Empleado> empleadoList = user.getEmpleadoList();
         // Lista de las empresas dentro de la lista de empleados:
@@ -46,6 +46,22 @@ public class FrontControllers {
             model.addAttribute("empresas", empresaList);
             model.addAttribute("movimientos", empresa.getMovimientoDineroList());
             return "movimientos";
+        }
+        return "";
+    }
+
+    @RequestMapping("/empresas/{id}/empleados")
+    public String empresasempleados(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
+        User user = this.userServices.getOrCreateUser(principal.getClaims());
+        Empresa empresa = this.empresaServices.getEmpresaById(id);
+        List<Empleado> empleadoList = user.getEmpleadoList();
+        // Lista de las empresas dentro de la lista de empleados:
+        List<Empresa> empresaList = empleadoList.stream().map(Empleado::getEmpresa).collect(Collectors.toList());
+        if(empresaList.contains(empresa)){
+            model.addAttribute("empresa", empresa);
+            model.addAttribute("empresas", empresaList);
+            model.addAttribute("empleados", empresa.getEmpleadoList());
+            return "empleados";
         }
         return "";
     }
@@ -78,5 +94,16 @@ public class FrontControllers {
 
         model.addAttribute("movimiento", movimientoDinero);
         return "new-movimiento";
+    }
+
+    @GetMapping("/empresas/{id}/empleados/new")
+    public String NuevoEmpleado(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
+        User user = this.userServices.getOrCreateUser(principal.getClaims());
+        Empresa empresa = this.empresaServices.getEmpresaById(id);
+        Empleado empleado = new Empleado();
+        empleado.setEmpresa(empresa);
+
+        model.addAttribute("empleado", empleado);
+        return "new-empleado";
     }
 }
