@@ -26,7 +26,7 @@ public class FrontControllers {
         this.empleadoServices = empleadoServices;
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String index(Model model, @AuthenticationPrincipal OidcUser principal){
         if(principal != null){
             User user = this.userServices.getOrCreateUser(principal.getClaims());
@@ -34,8 +34,8 @@ public class FrontControllers {
         return "index";
     }
 
-    @RequestMapping("/empresas/{id}/movimientos")
-    public String empresasmovimientos(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
+    @GetMapping("/empresas/{id}/movimientos")
+    public String EmpresasMovimientos(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
         List<Empleado> empleadoList = user.getEmpleadoList();
         // Lista de las empresas dentro de la lista de empleados:
@@ -50,8 +50,8 @@ public class FrontControllers {
         return "";
     }
 
-    @RequestMapping("/empresas/{id}/empleados")
-    public String empresasempleados(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
+    @GetMapping("/empresas/{id}/empleados")
+    public String EmpresasEmpleados(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
         Empresa empresa = this.empresaServices.getEmpresaById(id);
         List<Empleado> empleadoList = user.getEmpleadoList();

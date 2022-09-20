@@ -2,6 +2,11 @@
     background-image: url("../img/bg.jpg");
 }
 
+button {
+  all: unset;
+  cursor: pointer;
+}
+
 .nav-pills > .nav-item > .nav-link.active {
   background-color: #b8a797;
 }

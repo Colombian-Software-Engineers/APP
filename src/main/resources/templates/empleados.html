@@ -85,9 +85,11 @@
                     <td th:text="${empleado.rolEmpleado}"></td>
                     <td>
                         <div class="table-button">
-                            <a th:href="@{/empresas/{id}/empleados/new(id = ${empresa.idEmpresa})}">
-                                <img class="img-fluid" src="http://localhost:8080/img/delete.png"/>
-                            </a>
+                            <form th:action="@{/empleados/{id} (id = ${empleado.idEmpleado})}" th:method="DELETE">
+                                <button type="submit">
+                                    <img class="img-fluid" src="http://localhost:8080/img/delete.png"/>
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>

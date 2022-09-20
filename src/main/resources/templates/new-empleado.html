@@ -21,7 +21,9 @@
         <form th:action="@{/empleados}" th:method="post" th:object="${empleado}" class="d-flex flex-column gap-2">
             <input th:field="*{nombreEmpleado}" class="form-control" type="text" placeholder="Nombre del empleado" />
             <input th:field="*{correoEmpleado}" class="form-control" type="email" placeholder="Correo del empleado" />
-
+            <select th:field="*{rolEmpleado}" name="Rol del empleado">
+                <option th:each="rolEmpleado: ${T(com.ColombianSoftwareEngineers.APP.entities.RolEmpleado).values()}" th:value="${rolEmpleado}" th:text="${rolEmpleado.rol}"></option>
+            </select>
             <input th:field="*{empresa}" th:value="${empleado.empresa}" th:type="hidden" />
             <button type="submit" class="btn btn-primary btn-lg px-2">Crear</button>
         </form>

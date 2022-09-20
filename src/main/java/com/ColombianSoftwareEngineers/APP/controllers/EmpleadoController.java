@@ -23,8 +23,6 @@ public class EmpleadoController {
         return new RedirectView("/empresas/"+empleado.getEmpresa().getIdEmpresa()+"/empleados");
     }
 
-    @GetMapping("/empleado/{id}")
-    public Empleado EmpleadoById(@PathVariable Long id){ return this.service.getEmpleadoById(id); }
     @PatchMapping("/empleado/{id}")
     public Empleado PatchEmpleadoById(@PathVariable Long id, @RequestBody Empleado empleado){
         Empleado resultado = this.service.getEmpleadoById(id);
@@ -33,11 +31,11 @@ public class EmpleadoController {
         resultado.setRolEmpleado(empleado.getRolEmpleado());
         return this.service.createOrUpdateEmpleado(resultado);
     }
-    @DeleteMapping("/empleado/{id}")
-    public String DeleteEmpleadoById(@PathVariable Long id){
+    @DeleteMapping("/empleados/{id}")
+    public RedirectView DeleteEmpleadoById(@PathVariable Long id){
+        Empleado empleado = this.service.getEmpleadoById(id);
         this.service.deleteEmpleadoById(id);
-        return "Empleado eliminado";
+        return new RedirectView("/empresas/" + empleado.getEmpresa().getIdEmpresa() + "/empleados");
     }
 
-    // TODO sync empleado table with empresa and movimientos table
 }

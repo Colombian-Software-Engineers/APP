@@ -4,12 +4,12 @@ public enum RolEmpleado {
     ADMIN("Admin"),
     OPERARIO("Operario");
 
-    private String rol;
+    private final String rol;
     RolEmpleado(String rol) {
         this.rol = rol;
     }
 
-    public String toString(){
+    public String getRol(){
         return this.rol;
     }
 }
