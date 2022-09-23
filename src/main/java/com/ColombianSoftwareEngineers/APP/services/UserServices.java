@@ -21,6 +21,7 @@ public class UserServices {
     public User findByAuth0id(String auth0id){
         return this.repository.findByAuth0idUser(auth0id);
     }
+    public User findByEmailUser(String email) { return this.repository.findByEmailUser(email); }
 
     public User getOrCreateUser(Map<String, Object> userData){
         String auth0id = (String) userData.get("sub");

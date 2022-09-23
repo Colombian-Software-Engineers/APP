@@ -17,7 +17,7 @@
         </a>
         <div class="container d-flex flex-column align-self-center py-5">
             <div class="d-flex flex-column dropdown align-self-center">
-                <img src="https://github.com/mdo.png" alt="" class="rounded-circle m-3 mt-0" width="150" height="150"/>
+                <img src="http://localhost:8080/img/holder.jpg" alt="" class="rounded-circle m-3 mt-0" width="150" height="150"/>
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-center align-self-center" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <strong th:text="${empresa.nombreEmpresa}"></strong>
                 </a>
@@ -69,13 +69,6 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Rol</th>
-                    <th>
-                        <div class="table-button">
-                            <a th:href="@{/empresas/{id}/empleados/new(id = ${empresa.idEmpresa})}">
-                                <img class="img-fluid" src="http://localhost:8080/img/add.png">
-                            </a>
-                        </div>
-                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -83,15 +76,6 @@
                     <td th:text="${empleado.nombreEmpleado}"></td>
                     <td th:text="${empleado.correoEmpleado}"></td>
                     <td th:text="${empleado.rolEmpleado}"></td>
-                    <td>
-                        <div class="table-button">
-                            <form th:action="@{/empleados/{id} (id = ${empleado.idEmpleado})}" th:method="DELETE">
-                                <button type="submit">
-                                    <img class="img-fluid" src="http://localhost:8080/img/delete.png"/>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
                 </tr>
                 </tbody>
             </table>

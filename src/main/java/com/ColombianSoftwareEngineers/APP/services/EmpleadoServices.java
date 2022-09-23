@@ -1,6 +1,7 @@
 package com.ColombianSoftwareEngineers.APP.services;
 
 import com.ColombianSoftwareEngineers.APP.entities.Empleado;
+import com.ColombianSoftwareEngineers.APP.entities.User;
 import com.ColombianSoftwareEngineers.APP.repositories.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 

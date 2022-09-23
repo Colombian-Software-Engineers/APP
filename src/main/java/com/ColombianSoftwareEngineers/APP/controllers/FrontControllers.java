@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -37,15 +38,20 @@ public class FrontControllers {
     @GetMapping("/empresas/{id}/movimientos")
     public String EmpresasMovimientos(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
-        List<Empleado> empleadoList = user.getEmpleadoList();
-        // Lista de las empresas dentro de la lista de empleados:
-        List<Empresa> empresaList = empleadoList.stream().map(Empleado::getEmpresa).collect(Collectors.toList());
         Empresa empresa = this.empresaServices.getEmpresaById(id);
+        List<Empresa> empresaList = user.getEmpleadosEmpresaList();
         if(empresaList.contains(empresa)){
             model.addAttribute("empresa", empresa);
             model.addAttribute("empresas", empresaList);
             model.addAttribute("movimientos", empresa.getMovimientoDineroList());
-            return "movimientos";
+
+            Empleado empleado = user.getEmpleadoByEmpresa(empresa).get();
+            if(empleado.getRolEmpleado() == RolEmpleado.ADMIN){
+                return "movimientosAdmin";
+            }
+            else {
+                return "movimientosOperario";
+            }
         }
         return "";
     }
@@ -54,14 +60,19 @@ public class FrontControllers {
     public String EmpresasEmpleados(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
         Empresa empresa = this.empresaServices.getEmpresaById(id);
-        List<Empleado> empleadoList = user.getEmpleadoList();
-        // Lista de las empresas dentro de la lista de empleados:
-        List<Empresa> empresaList = empleadoList.stream().map(Empleado::getEmpresa).collect(Collectors.toList());
+        List<Empresa> empresaList = user.getEmpleadosEmpresaList();
         if(empresaList.contains(empresa)){
             model.addAttribute("empresa", empresa);
             model.addAttribute("empresas", empresaList);
             model.addAttribute("empleados", empresa.getEmpleadoList());
-            return "empleados";
+
+            Empleado empleado = user.getEmpleadoByEmpresa(empresa).get();
+            if(empleado.getRolEmpleado() == RolEmpleado.ADMIN){
+                return "empleadosAdmin";
+            }
+            else {
+                return "empleadosOperario";
+            }
         }
         return "";
     }
@@ -84,12 +95,11 @@ public class FrontControllers {
     @GetMapping("/empresas/{id}/movimientos/new")
     public String NuevoMovimiento(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
-        List<Empleado> empleadoList = user.getEmpleadoList();
         Empresa empresa = this.empresaServices.getEmpresaById(id);
         MovimientoDinero movimientoDinero = new MovimientoDinero();
 
-        empleadoList.retainAll(empresa.getEmpleadoList()); // Empleado en común
-        movimientoDinero.setEmpleado(empleadoList.get(0));
+        Optional<Empleado> empleado= user.getEmpleadoByEmpresa(empresa);
+        movimientoDinero.setEmpleado(empleado.get());
         movimientoDinero.setEmpresa(empresa);
 
         model.addAttribute("movimiento", movimientoDinero);

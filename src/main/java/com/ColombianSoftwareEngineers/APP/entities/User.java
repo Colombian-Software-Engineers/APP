@@ -2,6 +2,8 @@ package com.ColombianSoftwareEngineers.APP.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="users")
@@ -23,6 +25,20 @@ public class User {
     private List<Empleado> empleadoList;
 
     public User() {
+    }
+
+    public List<Empresa> getEmpleadosEmpresaList(){
+        List<Empleado> empleadoList = this.getEmpleadoList();
+        // Lista de las empresas dentro de la lista de empleados:
+        List<Empresa> empresaList = empleadoList.stream().map(Empleado::getEmpresa).collect(Collectors.toList());
+        return empresaList;
+    }
+
+    public Optional<Empleado> getEmpleadoByEmpresa(Empresa empresa){
+        List<Empleado> userEmpleados = this.getEmpleadoList();
+        List<Empleado> empresaEmpleados = empresa.getEmpleadoList();
+        userEmpleados.retainAll(empresaEmpleados);
+        return Optional.ofNullable(userEmpleados.get(0));
     }
 
     public List<Empleado> getEmpleadoList() {

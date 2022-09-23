@@ -27,8 +27,6 @@ public class EmpresaControllers {
         this.userServices = userServices;
     }
 
-//    @GetMapping("/empresas")
-//    public List<Empresa> EmpresaList(){ return this.service.getEmpresaList(); }
     @PostMapping("/empresas")
     public RedirectView PostEmpresa(@ModelAttribute Empresa empresa){
         List<Empleado> empleadoList = empresa.getEmpleadoList();
@@ -51,9 +49,6 @@ public class EmpresaControllers {
         return new RedirectView("/empresas/new");
     }
 
-//    @GetMapping("/empresas/{id}")
-//    public Empresa EmpresaById(@PathVariable Long id){ return this.service.getEmpresaById(id); }
-//
 //    @PatchMapping("/empresas/{id}")
 //    public Empresa PatchEmpresaById(@PathVariable Long id, @RequestBody Empresa empresa){
 //        empresa.setIdEmpresa(id);
