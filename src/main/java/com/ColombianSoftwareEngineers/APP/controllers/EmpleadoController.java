@@ -19,8 +19,6 @@ public class EmpleadoController {
         this.userServices = userServices;
     }
 
-    @GetMapping("/empleado")
-    public List<Empleado> EmpleadoList(){ return this.service.getEmpleadoList(); }
     @PostMapping("/empleados")
     public RedirectView PostEmpleado(@ModelAttribute Empleado empleado){
         User user = this.userServices.findByEmailUser(empleado.getCorreoEmpleado());
@@ -29,15 +27,6 @@ public class EmpleadoController {
         }
         this.service.createOrUpdateEmpleado(empleado);
         return new RedirectView("/empresas/"+empleado.getEmpresa().getIdEmpresa()+"/empleados");
-    }
-
-    @PatchMapping("/empleado/{id}")
-    public Empleado PatchEmpleadoById(@PathVariable Long id, @RequestBody Empleado empleado){
-        Empleado resultado = this.service.getEmpleadoById(id);
-        resultado.setNombreEmpleado(empleado.getNombreEmpleado());
-        resultado.setCorreoEmpleado(empleado.getCorreoEmpleado());
-        resultado.setRolEmpleado(empleado.getRolEmpleado());
-        return this.service.createOrUpdateEmpleado(resultado);
     }
     @DeleteMapping("/empleados/{id}")
     public RedirectView DeleteEmpleadoById(@PathVariable Long id){

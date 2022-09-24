@@ -49,16 +49,4 @@ public class EmpresaControllers {
         return new RedirectView("/empresas/new");
     }
 
-//    @PatchMapping("/empresas/{id}")
-//    public Empresa PatchEmpresaById(@PathVariable Long id, @RequestBody Empresa empresa){
-//        empresa.setIdEmpresa(id);
-//        return this.service.createOrUpdateEmpresa(empresa);
-//    }
-//
-//    @DeleteMapping("/empresas/{id}")
-//    public String DeleteEmpresaById(@PathVariable Long id){
-//        this.service.deleteEmpresaById(id);
-//        return "Empresa eliminada";
-//    }
-
 }
