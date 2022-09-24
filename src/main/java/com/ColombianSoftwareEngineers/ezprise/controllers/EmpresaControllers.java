@@ -1,16 +1,13 @@
-package com.ColombianSoftwareEngineers.APP.controllers;
+package com.ColombianSoftwareEngineers.ezprise.controllers;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empleado;
-import com.ColombianSoftwareEngineers.APP.entities.Empresa;
-import com.ColombianSoftwareEngineers.APP.entities.User;
-import com.ColombianSoftwareEngineers.APP.services.EmpleadoServices;
-import com.ColombianSoftwareEngineers.APP.services.EmpresaServices;
-import com.ColombianSoftwareEngineers.APP.services.UserServices;
+import com.ColombianSoftwareEngineers.ezprise.entities.Empleado;
+import com.ColombianSoftwareEngineers.ezprise.entities.Empresa;
+import com.ColombianSoftwareEngineers.ezprise.entities.User;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpleadoServices;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpresaServices;
+import com.ColombianSoftwareEngineers.ezprise.services.UserServices;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 

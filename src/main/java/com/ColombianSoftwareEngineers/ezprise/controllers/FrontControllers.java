@@ -1,20 +1,18 @@
-package com.ColombianSoftwareEngineers.APP.controllers;
+package com.ColombianSoftwareEngineers.ezprise.controllers;
 
-import com.ColombianSoftwareEngineers.APP.entities.*;
-import com.ColombianSoftwareEngineers.APP.services.EmpleadoServices;
-import com.ColombianSoftwareEngineers.APP.services.EmpresaServices;
-import com.ColombianSoftwareEngineers.APP.services.UserServices;
+import com.ColombianSoftwareEngineers.ezprise.entities.*;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpleadoServices;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpresaServices;
+import com.ColombianSoftwareEngineers.ezprise.services.UserServices;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 public class FrontControllers {

@@ -1,13 +1,10 @@
-package com.ColombianSoftwareEngineers.APP.controllers;
+package com.ColombianSoftwareEngineers.ezprise.controllers;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empresa;
-import com.ColombianSoftwareEngineers.APP.entities.MovimientoDinero;
-import com.ColombianSoftwareEngineers.APP.services.EmpresaServices;
-import com.ColombianSoftwareEngineers.APP.services.MovimientoServices;
+import com.ColombianSoftwareEngineers.ezprise.entities.MovimientoDinero;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpresaServices;
+import com.ColombianSoftwareEngineers.ezprise.services.MovimientoServices;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @RestController
 public class MovimientoControllers {

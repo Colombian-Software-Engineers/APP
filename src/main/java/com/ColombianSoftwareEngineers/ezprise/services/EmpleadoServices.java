@@ -1,8 +1,7 @@
-package com.ColombianSoftwareEngineers.APP.services;
+package com.ColombianSoftwareEngineers.ezprise.services;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empleado;
-import com.ColombianSoftwareEngineers.APP.entities.User;
-import com.ColombianSoftwareEngineers.APP.repositories.EmpleadoRepository;
+import com.ColombianSoftwareEngineers.ezprise.entities.Empleado;
+import com.ColombianSoftwareEngineers.ezprise.repositories.EmpleadoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,8 +1,4 @@
-package com.ColombianSoftwareEngineers.APP.entities;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+package com.ColombianSoftwareEngineers.ezprise.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;

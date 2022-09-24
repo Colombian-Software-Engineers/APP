@@ -1,8 +1,7 @@
-package com.ColombianSoftwareEngineers.APP.services;
+package com.ColombianSoftwareEngineers.ezprise.services;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empresa;
-import com.ColombianSoftwareEngineers.APP.entities.MovimientoDinero;
-import com.ColombianSoftwareEngineers.APP.repositories.MovimientoRepository;
+import com.ColombianSoftwareEngineers.ezprise.entities.MovimientoDinero;
+import com.ColombianSoftwareEngineers.ezprise.repositories.MovimientoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ColombianSoftwareEngineers.APP;
+package com.ColombianSoftwareEngineers.ezprise;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

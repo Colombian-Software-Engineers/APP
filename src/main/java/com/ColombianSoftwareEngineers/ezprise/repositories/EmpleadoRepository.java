@@ -1,7 +1,6 @@
-package com.ColombianSoftwareEngineers.APP.repositories;
+package com.ColombianSoftwareEngineers.ezprise.repositories;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empleado;
-import com.ColombianSoftwareEngineers.APP.entities.User;
+import com.ColombianSoftwareEngineers.ezprise.entities.Empleado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

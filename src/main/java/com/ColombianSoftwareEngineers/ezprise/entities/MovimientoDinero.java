@@ -1,6 +1,4 @@
-package com.ColombianSoftwareEngineers.APP.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.ColombianSoftwareEngineers.ezprise.entities;
 
 import javax.persistence.*;
 import java.util.List;

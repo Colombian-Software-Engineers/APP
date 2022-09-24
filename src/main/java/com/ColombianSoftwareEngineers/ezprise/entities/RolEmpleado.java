@@ -1,4 +1,4 @@
-package com.ColombianSoftwareEngineers.APP.entities;
+package com.ColombianSoftwareEngineers.ezprise.entities;
 
 public enum RolEmpleado {
     ADMIN("Admin"),

@@ -1,6 +1,6 @@
-package com.ColombianSoftwareEngineers.APP.repositories;
+package com.ColombianSoftwareEngineers.ezprise.repositories;
 
-import com.ColombianSoftwareEngineers.APP.entities.MovimientoDinero;
+import com.ColombianSoftwareEngineers.ezprise.entities.MovimientoDinero;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

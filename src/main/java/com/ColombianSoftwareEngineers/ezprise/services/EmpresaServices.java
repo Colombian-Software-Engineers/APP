@@ -1,15 +1,9 @@
-package com.ColombianSoftwareEngineers.APP.services;
+package com.ColombianSoftwareEngineers.ezprise.services;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empleado;
-import com.ColombianSoftwareEngineers.APP.entities.Empresa;
-import com.ColombianSoftwareEngineers.APP.entities.RolEmpleado;
-import com.ColombianSoftwareEngineers.APP.entities.User;
-import com.ColombianSoftwareEngineers.APP.repositories.EmpresaRepository;
+import com.ColombianSoftwareEngineers.ezprise.entities.Empresa;
+import com.ColombianSoftwareEngineers.ezprise.repositories.EmpresaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service

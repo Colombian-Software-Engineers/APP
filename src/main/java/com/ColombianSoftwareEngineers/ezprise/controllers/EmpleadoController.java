@@ -1,13 +1,11 @@
-package com.ColombianSoftwareEngineers.APP.controllers;
+package com.ColombianSoftwareEngineers.ezprise.controllers;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empleado;
-import com.ColombianSoftwareEngineers.APP.entities.User;
-import com.ColombianSoftwareEngineers.APP.services.EmpleadoServices;
-import com.ColombianSoftwareEngineers.APP.services.UserServices;
+import com.ColombianSoftwareEngineers.ezprise.entities.Empleado;
+import com.ColombianSoftwareEngineers.ezprise.entities.User;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpleadoServices;
+import com.ColombianSoftwareEngineers.ezprise.services.UserServices;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
-import java.util.List;
 
 @RestController
 public class EmpleadoController {
