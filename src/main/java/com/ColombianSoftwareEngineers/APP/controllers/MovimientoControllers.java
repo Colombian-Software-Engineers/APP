@@ -1,6 +1,5 @@
 package com.ColombianSoftwareEngineers.APP.controllers;
 
-import com.ColombianSoftwareEngineers.APP.entities.Empresa;
 import com.ColombianSoftwareEngineers.APP.entities.MovimientoDinero;
 import com.ColombianSoftwareEngineers.APP.services.EmpresaServices;
 import com.ColombianSoftwareEngineers.APP.services.MovimientoServices;
