@@ -4,6 +4,7 @@ import com.ColombianSoftwareEngineers.APP.entities.MovimientoDinero;
 import com.ColombianSoftwareEngineers.APP.services.EmpresaServices;
 import com.ColombianSoftwareEngineers.APP.services.MovimientoServices;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -16,32 +17,17 @@ public class MovimientoControllers {
         this.empresaServices=empresaServices;
     }
 
-    @GetMapping("/empresas/{idEmp}/movimientos")
-    public List<MovimientoDinero> MovimientoList(@PathVariable Long idEmp){
-        return this.empresaServices.getEmpresaById(idEmp).getMovimientoDineroList();
+    @PostMapping("/movimientos")
+    public RedirectView PostMovimiento(@ModelAttribute MovimientoDinero movimientoDinero){
+        this.service.createOrUpdateMovimiento(movimientoDinero);
+        return new RedirectView("/empresas/" + movimientoDinero.getEmpresa().getIdEmpresa() + "/movimientos");
     }
 
-    @PostMapping("/empresas/{idEmp}/movimientos")
-    public MovimientoDinero PostMovimiento(@PathVariable Long idEmp, @RequestBody MovimientoDinero movimiento){
-        movimiento.setEmpresa(this.empresaServices.getEmpresaById(idEmp));
-        return this.service.createOrUpdateMovimiento(movimiento);
+    @DeleteMapping("/movimientos/{id}")
+    public RedirectView DeleteMovimientoById(@PathVariable Long id) {
+        MovimientoDinero movimientoDinero = this.service.getMovimientoById(id);
+        this.service.deleteMovimientoById(id);
+        return new RedirectView("/empresas/" + movimientoDinero.getEmpresa().getIdEmpresa() + "/movimientos");
     }
 
-    @PatchMapping("/empresas/{idEmp}/movimiento/{id}")
-    public MovimientoDinero PatchMovimientoById(@PathVariable Long idEmp, @PathVariable Long id, @RequestBody MovimientoDinero movimiento){
-        movimiento.setIdMovimiento(id);
-        movimiento.setEmpresa(this.empresaServices.getEmpresaById(idEmp));
-        return this.service.createOrUpdateMovimiento(movimiento);
-    }
-    @DeleteMapping("/empresas/{idEmp}/movimientos/{id}")
-    public String DeleteMovimientoById(@PathVariable Long idEmp, @PathVariable Long id){
-        List<MovimientoDinero> listaMovimientos = this.empresaServices.getEmpresaById(idEmp).getMovimientoDineroList();
-        if(listaMovimientos.contains(this.service.getMovimientoById(id))){
-            this.service.deleteMovimientoById(id);
-            return "Movimiento eliminado";
-        }
-        else{
-            return "Movimiento no encontrado";
-        }
-    }
 }

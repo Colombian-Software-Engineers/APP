@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/styles.css">
+    <title>ezprise - Nuevo empleado</title>
+</head>
+<body>
+<div class="masthead bg-dark">
+    <!-- Logo -->
+    <a href="/">
+        <img class="tl-logo" src="http://localhost:8080/img/logo.png"/>
+    </a>
+    <!-- Form -->
+    <div class="container px-4 py-5 my-auto text-center d-flex flex-column align-items-center">
+        <h1 class="display-5 fw-bold mb-4">Nuevo Empleado</h1>
+        <form th:action="@{/empleados}" th:method="post" th:object="${empleado}" class="d-flex flex-column gap-2">
+            <input th:field="*{nombreEmpleado}" class="form-control" type="text" placeholder="Nombre del empleado" />
+            <input th:field="*{correoEmpleado}" class="form-control" type="email" placeholder="Correo del empleado" />
+            <select th:field="*{rolEmpleado}" name="Rol del empleado">
+                <option th:each="rolEmpleado: ${T(com.ColombianSoftwareEngineers.APP.entities.RolEmpleado).values()}" th:value="${rolEmpleado}" th:text="${rolEmpleado.rol}"></option>
+            </select>
+            <input th:field="*{empresa}" th:value="${empleado.empresa}" th:type="hidden" />
+            <button type="submit" class="btn btn-primary btn-lg px-2">Crear</button>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>
