@@ -17,9 +17,11 @@
         </a>
         <div class="container d-flex flex-column align-self-center py-5">
             <div class="d-flex flex-column dropdown align-self-center">
-                <img th:src="@{/img/holder.jpg}" alt="" class="rounded-circle m-3 mt-0" width="150" height="150"/>
+                <img th:src="@{${usuario.imageUser}}" alt="" class="rounded-circle m-3 mt-0" width="150" height="150"/>
+                <strong class="align-self-center" th:text="${usuario.nameUser}"></strong>
+                <hr class="my-3">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-center align-self-center" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong th:text="${empresa.nombreEmpresa}"></strong>
+                    <p th:text="${empresa.nombreEmpresa}"></p>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow pl-3" aria-labelledby="dropdownUser1">
                     <div th:each="empresa : ${empresas}">
@@ -28,7 +30,6 @@
                     <li><a class="dropdown-item" th:href="@{/empresas/new}">Crear nueva</a></li>
                 </ul>
             </div>
-            <hr class="my-3">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item my-2">
                     <a class="d-flex flex-row align-items-center nav-link active" aria-current="page">

@@ -42,6 +42,7 @@ public class FrontControllers {
             model.addAttribute("empresa", empresa);
             model.addAttribute("empresas", empresaList);
             model.addAttribute("movimientos", empresa.getMovimientoDineroList());
+            model.addAttribute("usuario", user);
 
             Empleado empleado = user.getEmpleadoByEmpresa(empresa).get();
             if(empleado.getRolEmpleado() == RolEmpleado.ADMIN){
