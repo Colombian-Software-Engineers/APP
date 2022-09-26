@@ -13,7 +13,7 @@ public class MovimientoServices {
     public MovimientoServices(MovimientoRepository repository) {
         this.repository = repository;
     }
-
+    public void deleteMovimientos(List<MovimientoDinero> movimientoDineroList){ this.repository.deleteAll(movimientoDineroList);}
     public List<MovimientoDinero> getMovimientoList(){ return this.repository.findAll();}
     public MovimientoDinero createOrUpdateMovimiento(MovimientoDinero movimiento){ return this.repository.save(movimiento);}
     public void deleteMovimientoById(Long id){ this.repository.deleteById(id);}

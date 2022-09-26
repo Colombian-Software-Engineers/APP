@@ -67,6 +67,7 @@ public class FrontControllers {
             model.addAttribute("empresa", empresa);
             model.addAttribute("empresas", empresaList);
             model.addAttribute("empleados", empresa.getEmpleadoList());
+            model.addAttribute("usuario", user);
 
             Empleado empleado = user.getEmpleadoByEmpresa(empresa).get();
             if(empleado.getRolEmpleado() == RolEmpleado.ADMIN){
@@ -74,6 +75,27 @@ public class FrontControllers {
             }
             else {
                 return "empleadosOperario";
+            }
+        }
+        return "";
+    }
+
+    @GetMapping("/empresas/{id}/info")
+    public String EmpresasInfo(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
+        User user = this.userServices.getOrCreateUser(principal.getClaims());
+        Empresa empresa = this.empresaServices.getEmpresaById(id);
+        List<Empresa> empresaList = user.getEmpleadosEmpresaList();
+        if(empresaList.contains(empresa)){
+            model.addAttribute("empresa", empresa);
+            model.addAttribute("empresas", empresaList);
+            model.addAttribute("usuario", user);
+
+            Empleado empleado = user.getEmpleadoByEmpresa(empresa).get();
+            if(empleado.getRolEmpleado() == RolEmpleado.ADMIN){
+                return "empresaAdmin";
+            }
+            else {
+                return "empresaOperario";
             }
         }
         return "";

@@ -1,5 +1,8 @@
 package com.ColombianSoftwareEngineers.ezprise.entities;
 
+import com.ColombianSoftwareEngineers.ezprise.services.EmpleadoServices;
+import com.ColombianSoftwareEngineers.ezprise.services.MovimientoServices;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,10 @@ public class Empleado {
         this.movimientoDineroList = new ArrayList<MovimientoDinero>();
     }
 
+    public void deleteEmpleado(EmpleadoServices empleadoService, MovimientoServices movimientoServices){
+        movimientoServices.deleteMovimientos(this.getMovimientoDineroList());
+        empleadoService.deleteEmpleadoById(this.idEmpleado);
+    }
 
     //metodos set y get
 

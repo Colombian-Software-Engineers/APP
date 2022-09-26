@@ -3,6 +3,7 @@ package com.ColombianSoftwareEngineers.ezprise.controllers;
 import com.ColombianSoftwareEngineers.ezprise.entities.Empleado;
 import com.ColombianSoftwareEngineers.ezprise.entities.User;
 import com.ColombianSoftwareEngineers.ezprise.services.EmpleadoServices;
+import com.ColombianSoftwareEngineers.ezprise.services.MovimientoServices;
 import com.ColombianSoftwareEngineers.ezprise.services.UserServices;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -12,9 +13,11 @@ public class EmpleadoController {
 
     EmpleadoServices service;
     UserServices userServices;
-    public EmpleadoController(EmpleadoServices services, UserServices userServices) {
+    MovimientoServices movimientoServices;
+    public EmpleadoController(EmpleadoServices services, UserServices userServices, MovimientoServices movimientoServices) {
         this.service = services;
         this.userServices = userServices;
+        this.movimientoServices = movimientoServices;
     }
 
     @PostMapping("/empleados")
@@ -29,7 +32,7 @@ public class EmpleadoController {
     @DeleteMapping("/empleados/{id}")
     public RedirectView DeleteEmpleadoById(@PathVariable Long id){
         Empleado empleado = this.service.getEmpleadoById(id);
-        this.service.deleteEmpleadoById(id);
+        empleado.deleteEmpleado(this.service, this.movimientoServices);
         return new RedirectView("/empresas/" + empleado.getEmpresa().getIdEmpresa() + "/empleados");
     }
 

@@ -1,6 +1,10 @@
 package com.ColombianSoftwareEngineers.ezprise.entities;
 
 
+import com.ColombianSoftwareEngineers.ezprise.services.EmpleadoServices;
+import com.ColombianSoftwareEngineers.ezprise.services.EmpresaServices;
+import com.ColombianSoftwareEngineers.ezprise.services.MovimientoServices;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,11 @@ public class Empresa {
         this.movimientoDineroList = new ArrayList<MovimientoDinero>();
     }
 
+
+    public void deleteEmpresa(EmpleadoServices empleadoServices, EmpresaServices empresaServices, MovimientoServices movimientoServices){
+        this.empleadoList.forEach(empleado -> empleado.deleteEmpleado(empleadoServices, movimientoServices));
+        empresaServices.deleteEmpresaById(this.idEmpresa);
+    }
     //metodos set y get
 
     public Long getIdEmpresa() {

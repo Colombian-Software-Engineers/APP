@@ -17,9 +17,11 @@
         </a>
         <div class="container d-flex flex-column align-self-center py-5">
             <div class="d-flex flex-column dropdown align-self-center">
-                <img th:src="@{/img/holder.jpg}" alt="" class="rounded-circle m-3 mt-0" width="150" height="150"/>
-                <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-center align-self-center" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong th:text="${empresa.nombreEmpresa}"></strong>
+                <img th:src="@{${usuario.imageUser}}" referrerpolicy="no-referrer" alt="" class="rounded-circle m-3 mt-0" width="150" height="150"/>
+                <strong class="align-self-center" th:text="${usuario.nameUser}"></strong>
+                <hr class="my-3">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle text-center align-self-center" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <p th:text="${empresa.nombreEmpresa}"></p>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow pl-3" aria-labelledby="dropdownUser1">
                     <div th:each="empresa : ${empresas}">
@@ -28,7 +30,6 @@
                     <li><a class="dropdown-item" th:href="@{/empresas/new}">Crear nueva</a></li>
                 </ul>
             </div>
-            <hr class="my-3">
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item my-2">
                     <a class="d-flex flex-row align-items-center nav-link text-white" th:href="@{/empresas/{id}/movimientos(id = ${empresa.idEmpresa})}" >
@@ -40,12 +41,21 @@
                     </a>
                 </li>
                 <li class="nav-item my-2">
-                    <a href="#" class="d-flex flex-row align-items-center nav-link text-white active">
-                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                    <a class="d-flex flex-row align-items-center nav-link text-white active" th:href="@{/empresas/{id}/empleados(id = ${empresa.idEmpresa})}">
+                        <svg class="bi me-2" width="16" height="16"></svg>
                         <div class="icon-container">
                             <img class="img-fluid" th:src="@{/img/employees.png}"/>
                         </div>
                         Empleados
+                    </a>
+                </li>
+                <li class="nav-item my-2">
+                    <a class="d-flex flex-row align-items-center nav-link text-white" th:href="@{/empresas/{id}/info(id = ${empresa.idEmpresa})}">
+                        <svg class="bi me-2" width="16" height="16"></svg>
+                        <div class="icon-container">
+                            <img class="img-fluid" th:src="@{/img/info.png}"/>
+                        </div>
+                        Información
                     </a>
                 </li>
             </ul>
