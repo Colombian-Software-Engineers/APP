@@ -32,7 +32,10 @@ public class FrontControllers {
         }
         return "index";
     }
-
+    @GetMapping("/info")
+    public String info(){
+        return "ConocerMas";
+    }
     @GetMapping("/empresas/{id}/movimientos")
     public String EmpresasMovimientos(Model model, @AuthenticationPrincipal OidcUser principal, @PathVariable Long id) {
         User user = this.userServices.getOrCreateUser(principal.getClaims());
