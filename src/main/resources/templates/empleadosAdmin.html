@@ -25,7 +25,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow pl-3" aria-labelledby="dropdownUser1">
                     <div th:each="empresa : ${empresas}">
-                        <li><a th:href="@{/empresas/{id}/movimientos(id = ${empresa.idEmpresa})}" th:text="${empresa.nombreEmpresa}" class="dropdown-item" ></a></li>
+                        <li><a th:href="@{/empresas/{id}/empleados(id = ${empresa.idEmpresa})}" th:text="${empresa.nombreEmpresa}" class="dropdown-item" ></a></li>
                     </div>
                     <li><a class="dropdown-item" th:href="@{/empresas/new}">Crear nueva</a></li>
                 </ul>
